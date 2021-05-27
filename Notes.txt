@@ -1,0 +1,6 @@
+    -Notes-
+This file should be a place to compile things I've learned in a readable way outside of the programs, and also to make any plans or etc.
+
+- It might be a good idea to put this on my github account so that it is useful in job applications or whatever, and make ths and the discord bot public
+- Start keeping the assembly code of each chapter or something, as example code, remember to change nasm command to take the asm file we're working on 
+and assemble it to boot_sect.bin

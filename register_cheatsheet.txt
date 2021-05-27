@@ -1,0 +1,15 @@
+ax = 16 bits of register a
+al = low 8 bits of register ax
+ah = high 8 bits of register ax
+eax = 32 bits of register a
+
+sp = points to "top" of stack, the next item to pop
+bp = points to base of stack, items are added before not after each other
+
+cs = ?
+ds = data segment
+ss = stack segment
+es = general purpose segment register
+fs = general purpose segment register
+gs = general purpose segment register
+
