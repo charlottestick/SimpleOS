@@ -4,3 +4,20 @@ This file should be a place to compile things I've learned in a readable way out
 - It might be a good idea to put this on my github account so that it is useful in job applications or whatever, and make ths and the discord bot public
 - Start keeping the assembly code of each chapter or something, as example code, remember to change nasm command to take the asm file we're working on 
 and assemble it to boot_sect.bin
+
+
+ --- Compiling C on M1 Mac Big Sur - Chapter 5 ---
+// Compile C source code to object code with gcc/clang, setting target file format to elf32-i386
+$gcc -target i386-none-elf -ffreestanding -c basic.c -o basic.o
+
+// Do this instead of using ld to link
+// There might be an equivalent option to -Ttext 0x0, but I need to dig in the manual more
+$gobjcopy -O binary basic.o basic.bin
+
+
+-Ttext org
+Use org as the starting address for--respectively--the bss, data, or the text segment of the output file. org must be a single 
+hexadecimal integer; for compatibility with other linkers, you may omit the leading `0x' usually associated with hexadecimal values
+
+--set-start <addr>
+Set the start address to <addr>
