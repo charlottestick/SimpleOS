@@ -6,7 +6,7 @@ This file should be a place to compile things I've learned in a readable way out
 and assemble it to boot_sect.bin
 
 
- --- Compiling C on M1 Mac Big Sur - Chapter 5 ---
+ --- Compiling C on M1 Mac Big Sur - Chapter 5 pg. 42 ---
 // Compile C source code to object code with gcc/clang, setting target file format to elf32-i386
 $gcc -target i386-none-elf -ffreestanding -c basic.c -o basic.o
 
