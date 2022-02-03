@@ -11,6 +11,9 @@ and assemble it to boot_sect.bin
 - This file could be changed to a README.md, for better readability and visibilty on GitHub, or could be separated out into multiple markdowns, for instructions like below and thoughts like above, 
  and for keeping learnings in one place
 
+- Could make a clearScreen function in 32 bit mode to make the 'landed in 32 bit mode' string more obvious, 
+would be a good way to get back into the swing of it
+
 
  --- Compiling C on M1 Mac Big Sur - Chapter 5 pg. 42 ---
 // Compile C source code to object code with gcc/clang, setting target file format to elf32-i386
