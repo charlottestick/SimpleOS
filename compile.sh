@@ -9,7 +9,7 @@ if [ ${stringLength} -gt 0 ]; then # Check argument is passed
     if [ ${sourceFileName:${stringLength}-2} = '.c' ]; then # Check file extension is .c
         objectFileName="${sourceFileName:0:${stringLength}-2}.o"
         binFileName="${sourceFileName:0:${stringLength}-2}.bin"
-        gcc -target i386-none-elf -ffreestanding -c ${sourceFileName} -o ${objectFileName} 2> /dev/null
+        gcc -target i386-none-elf -ffreestanding -c ${sourceFileName} -o ${objectFileName}
         gobjcopy -O binary ${objectFileName} ${binFileName}
     else
         echo 'Pass a C source code file to compile to raw binary'
