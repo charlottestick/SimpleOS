@@ -26,11 +26,21 @@ would be a good way to get back into the swing of it
   $gobjcopy -O binary basic.o basic.bin
 
 
-For ld:
+For GNU ld:
   -Ttext org
     Use org as the starting address for--respectively--the bss, data, or the text segment of the output file. org must be a single 
     hexadecimal integer; for compatibility with other linkers, you may omit the leading `0x' usually associated with hexadecimal values
+    
+  -Ttext org is equivalent to --section-start=".text"=org
+  
+For MacOS ld:
+  The version of ld included with mac doesn't have -Ttext flag, but has -sect-align which might be the closest equivalent to --section-start
+  
+  -sectalign segname sectname value
+    The section named sectname in the segment segname will have its alignment set to value, where value is a hexadecimal number that must be an integral power of 2.
+    
+    Mac version of ld also only seems to have apple platforms available as targets so might not be suitable for use in this project.
 
 For gobjcopy:
-  --set-start <addr>
-    Set the start address to <addr>
+  There is an equivalent to --section-start in ld, --change-section-address ".text"=org
+  
