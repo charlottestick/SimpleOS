@@ -13,10 +13,10 @@
 	jmp $ 
 
 ; Importing function modules
-%include "print_string.asm"
-%include "print_string_pm.asm"
-%include "gdt.asm"
-%include "switch_to_pm.asm"
+%include "print/print_string.asm"
+%include "print/print_string_pm.asm"
+%include "pm/gdt.asm"
+%include "pm/switch_to_pm.asm"
 
 ; Main code 32 bit
 [bits 32]

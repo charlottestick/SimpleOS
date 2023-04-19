@@ -20,9 +20,9 @@
 	jmp $ 
 
 ; Importing function modules
-%include "print_string.asm"
-%include "print_hex.asm"
-%include "disk_load.asm"
+%include "../print/print_string.asm"
+%include "../print/print_hex.asm"
+%include "../disk/disk_load.asm"
 
 ;Variables
 BOOT_DRIVE: db 0
