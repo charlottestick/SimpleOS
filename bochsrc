@@ -3,7 +3,7 @@ romimage: file=$BXSHARE/BIOS-bochs-latest
 vgaromimage: file=$BXSHARE/VGABIOS-lgpl-latest
 vga: extension=vbe, update_freq=15
 display_library: sdl2
-floppya: 1_44=boot_sect.bin, status=inserted
+floppya: 1_44=os-image, status=inserted
 boot: a
 log: bochsout.txt
 mouse: enabled=0
