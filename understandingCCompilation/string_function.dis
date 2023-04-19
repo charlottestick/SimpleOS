@@ -1,0 +1,9 @@
+00000000  48                dec eax
+00000001  656C              gs insb
+00000003  6C                insb
+00000004  6F                outsd
+00000005  0000              add [eax],al
+00000007  0000              add [eax],al
+00000009  008945FC83C4      add [ecx-0x3b7c03bb],cl
+0000000F  045D              add al,0x5d
+00000011  C3                ret
