@@ -11,7 +11,7 @@ sourceFileName=$1
 addressOffset=$2
 stringLength=${#sourceFileName}
 
-if [ ${#addressOffset} -lt 1]; then
+if [ ${#addressOffset} -lt 1 ]; then
     addressOffset=0x0
 fi
 
