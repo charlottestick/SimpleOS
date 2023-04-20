@@ -5,6 +5,10 @@
 
 # Usage: ./compile.sh filename.c addressOffset
 
+# Current setup can only comile one C file, there is no linking involved
+# This is going to be migrated into a makefile instead of a script to abstract which files source files are expected etc
+# I'll leave this script in as is to help woth comiling the understandingCCompilation experiments
+
 sourceFileName=$1
 addressOffset=$2
 stringLength=${#sourceFileName}
