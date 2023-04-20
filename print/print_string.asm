@@ -9,11 +9,17 @@
 
 print_string:
 	pusha
+	; when calling interrupt 0x10 for video functions, set ah to the function we want
+	; setting ah to 0x0e means the teletype output, i.e. printing text
 	mov ah, 0x0e
+
+	; ah = 0x01 can be used to hide the cursor, maybe when we switch to 32 bit and are no longer using the BIOS to print
+	; set ch to the scan row start and cl to the scan row end, or hide by setting ch > cl or ch += 0x20
+	; x10000 = 0x10
 	
 string_loop:
 	mov al, [bx] ; [bx] takes the contents of bx as an address to follow, therefore [0x45ef] contents at address 0x45ef
-	
+
 	cmp al, 0 ; String must be 0 terminated
 	je string_return
 
