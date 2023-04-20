@@ -1,9 +1,7 @@
 #!/bin/zsh
 
-# May need to modify later to allow passing the start address to gobjcopy,
-# either a second required parameter or optional with a flag 
-
-# Could also pass the output filename as parameter
+# addressOffset might have to be the first param to allow mulitple files to be linked 
+# Or it could just be hardcoded to the kernel offset
 
 # Usage: ./compile.sh filename.c addressOffset
 

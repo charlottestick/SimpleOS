@@ -28,6 +28,8 @@ KERNEL_OFFSET equ 0x1000
 load_kernel:
 	mov bx, MSG_LOAD_KERNEL
 	call print_string
+	mov bx, 0x0 ; Extra newlines so the cursor doesn't get left in a funny place after 32 bit prints
+	call print_string
 
 	; Disk load params
 	mov bx, KERNEL_OFFSET ; Start loading from kernel offset
@@ -40,6 +42,10 @@ load_kernel:
 ; Main code 32 bit
 [bits 32]
 BEGIN_PM:
+	mov eax, 80 ; Number of characters in one line on screen
+	mov ebx, 19 ; Number of lines down to print at
+	mul ebx ; Find the number of characters along the screen to print at, wrapping round every 80
+	mov edx, eax
 	mov ebx, MSG_PROT_MODE
 	call print_string_pm
 
@@ -49,9 +55,9 @@ BEGIN_PM:
 
 
 ;Variables
-MSG_REAL_MODE: db "Started successfully in 16-bit mode ", 0
-MSG_PROT_MODE: db "Successfully landed in 32-bit protected mode ", 0
-MSG_LOAD_KERNEL: db "Loading the kernel into memory", 0
+MSG_REAL_MODE: db `Started successfully in 16-bit mode`, 0
+MSG_LOAD_KERNEL: db `Loading the kernel into memory`, 0
+MSG_PROT_MODE: db "Successfully landed in 32-bit protected mode", 0
 BOOT_DRIVE: db 0
 
 ;Defining end of boot sector

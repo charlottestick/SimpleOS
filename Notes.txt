@@ -4,16 +4,17 @@ This file should be a place to compile things I've learned in a readable way out
 - Start keeping the assembly code of each chapter or something, as example code, remember to change nasm command to take the asm file we're working on 
 and assemble it to boot_sect.bin
 
-
-- It might be smart to try and have a better folder system, and to make scripts to reduce human error and repetitiveness in commands, and predefine file references between folders 
-- Scripts could be made for assembling with nasm, compiling with gcc/clang and gobjcopy, copying the working file to a backup of each section's code (as mentioned in the first point)
-
 - This file could be changed to a README.md, for better readability and visibilty on GitHub, or could be separated out into multiple markdowns, for instructions like below and thoughts like above, 
  and for keeping learnings in one place
 
 - Could make a clearScreen function in 32 bit mode to make the 'landed in 32 bit mode' string more obvious, 
 would be a good way to get back into the swing of it
 
+
+- Compile script is going to need to take in multiple files to link, this might be a problem to solve
+
+- gobjcopy might not be suitable anymore, it only changes file format so it might not be able to link
+we're back to square one, trying to get ld to work on mac
 
  --- Compiling C on M1 Mac Big Sur - Chapter 5 pg. 42 ---
 // Compile C source code to object code with gcc/clang, setting target file format to elf32-i386

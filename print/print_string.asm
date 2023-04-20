@@ -13,12 +13,24 @@ print_string:
 	
 string_loop:
 	mov al, [bx] ; [bx] takes the contents of bx as an address to follow, therefore [0x45ef] contents at address 0x45ef
+	
 	cmp al, 0 ; String must be 0 terminated
-	je string_return	
+	je string_return
+
 	int 0x10
+
 	add bx, 1
 	jmp string_loop
 	
 string_return:
+	; Newline and carriage return before printing next string
+	mov al, [newline]
+	int 0x10
+	mov al, [newline + 1]
+	int 0x10
+
 	popa
 	ret
+
+newline:
+	db `\n\r`
