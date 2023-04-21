@@ -1,2 +1,4 @@
 bochsout.txt
 mem_dump
+*.o
+*.bin

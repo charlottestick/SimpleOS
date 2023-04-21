@@ -17,11 +17,11 @@ KERNEL_OFFSET equ 0x1000
 	jmp $ 
 
 ; Importing function modules
-%include "disk/disk_load.asm"
-%include "print/print_string.asm"
-%include "print/print_string_pm.asm"
-%include "pm/gdt.asm"
-%include "pm/switch_to_pm.asm"
+%include "src/boot/disk/disk_load.asm"
+%include "src/boot/print/print_string.asm"
+%include "src/boot/print/print_string_pm.asm"
+%include "src/boot/pm/gdt.asm"
+%include "src/boot/pm/switch_to_pm.asm"
 
 [bits 16] ; Why is this in the middle, can it be moved up?
 
