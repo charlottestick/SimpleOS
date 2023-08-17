@@ -1,5 +1,7 @@
 # Running the project
-Using bochs as an x86 emulator, this is setup with .bochsrc to boot with `os-image`, so you just have to run `bochs`, run the default option when it gives you a CLI menu, then press `c` for continue once it's loaded up to open the gui.
+Copy one of the example bochsrc files to create a bochsrc depending on your host OS, the main difference is that mac needs a different display library setting.
+
+The project uses bochs as an x86 emulator and is setup to boot with `os-image` so you just have to run `bochs`, accept the default option when it gives you a CLI menu, then enter `c` for continue once it's loaded up to open the gui.
 
 Once loaded you can leave bochs running when you make code changes, just press restart in the gui to boot with the latest os-image
 
@@ -9,6 +11,8 @@ Compile a single C file by running `./compile.sh <filename>.c`
 Assemble low level code by running `nasm <filename>.asm -f bin -o boot_sect.bin`
 
 # Development
+
+_Linux note: compile.sh and makefile were setup for mac, I'll need to adapt them and theses instructions for the linux compiler tools_
 
 ## Prerequisite
 We need the GNU linker with i386-elf as the target, as the mac version of ld is very different from the linux one. Usually you'd have to compile this yourself, however someone made homebrew formula to automate this.
