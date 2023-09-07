@@ -12,16 +12,25 @@ Assemble low level code by running `nasm <filename>.asm -f bin -o boot_sect.bin`
 
 # Development
 
-_Linux note: compile.sh and makefile were setup for mac, I'll need to adapt them and theses instructions for the linux compiler tools_
-
 ## Prerequisite
+- nasm
+- make
+- bochs
+- i386-elf-ld
+- gcc with -target option or i386-elf-gcc
+
 We need the GNU linker with i386-elf as the target, as the mac version of ld is very different from the linux one. Usually you'd have to compile this yourself, however someone made homebrew formula to automate this.
 
 Install the cross-linker by running:
 `brew tap nativeos/i386-elf-toolchain`
 `brew install i386-elf-binutils`
 
-The linker is included in the binutils. On mac, gcc has a target option which is set to 1386 & elf so we don't need the 1386-elf-gcc included (1386-elf-gcc also had issues cross-compiling on M1 mac)
+The linker is included in the binutils. On mac, gcc has a target option which is set to 1386 & elf so we don't need the i386-elf-gcc included (i386-elf-gcc also had issues cross-compiling on M1 mac)
+
+On linux, gcc doesn't have a target option so we need the cross compiled i386-elf version. The included brew formula for this may be broken and need `gmp`, `mpfr`, and `mpc` paths added to the config using `brew edit i386-elf-gcc` and adding `--with-{library}-lib=/usr/lib` options for all three
+
+Install the cross compiled gcc by running:
+`brew install i386-elf-gcc`
 
 ## Build
 Build by running `make` or `make os-image`

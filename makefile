@@ -5,6 +5,11 @@
 C_SOURCES = $(wildcard src/kernel/*.c src/drivers/*.c)
 HEADERS = $(wildcard src/kernel/*.h src/drivers/*.h)
 OBJ = ${C_SOURCES:.c=.o} # Generate list of object files by replacing file extensions in list of C files
+ifeq ($(shell uname), Linux)
+	GCC = i386-elf-gcc
+else
+	GCC = gcc -target i386-none-elf
+endif
 
 all : os-image clean # Fake target, first rule is run if make is called without a target so running just 'make' will target os-image
 
@@ -15,7 +20,7 @@ skip_debugger.txt:
 	echo "c" | cat > skip_debugger.txt
 
 %.o : %.c # Compile all C files in place 
-	gcc -target i386-none-elf -ffreestanding -c $< -o $@
+	${GCC} -ffreestanding -c $< -o $@
 
 %.bin : %.asm
 	nasm $< -f bin -o $@
