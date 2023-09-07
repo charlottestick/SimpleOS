@@ -3,6 +3,8 @@
 ;	call print_hex
 ;
 ;	%include "print_hex.asm"
+%ifndef PRINT_HEX_H
+%define PRINT_HEX_H
 
 print_hex:
 	pusha
@@ -50,3 +52,5 @@ print_hex_convert:
 print_hex_end:
 	popa
 	ret
+
+%endif

@@ -2,6 +2,8 @@
 ;   call clear_screen
 ;
 ;   %include "clear_screen.asm"
+%ifndef CLEAR_SCREEN_H
+%define CLEAR_SCREEN_H
 
 [bits 32]
 VIDEO_MEMORY equ 0xb8000
@@ -29,3 +31,5 @@ clear_screen_loop:
 clear_screen_end:
     popa
     ret
+
+%endif

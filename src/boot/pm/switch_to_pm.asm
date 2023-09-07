@@ -1,3 +1,6 @@
+%ifndef SWITCH_TO_PM_H
+%define SWITCH_TO_PM_H
+
 [bits 16] ; Tell assembler that instructions are to be encoded as 16 bit from here onwards
     
 switch_to_pm:
@@ -25,3 +28,5 @@ init_pm:
     mov esp, ebp
 
     call BEGIN_PM
+
+%endif

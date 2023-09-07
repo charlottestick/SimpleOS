@@ -7,6 +7,8 @@
 ;   call disk_load
 ;
 ;   %include "disk_load.asm"
+%ifndef DISK_LOAD_H
+%define DISK_LOAD_H
 
 disk_load:
 	push dx ; push dx to stack so we can check number of sectors read later
@@ -41,3 +43,5 @@ DISK_ERROR_MSG:
 
 READ_ERROR_MSG:
     db "Read error!", 0
+
+%endif

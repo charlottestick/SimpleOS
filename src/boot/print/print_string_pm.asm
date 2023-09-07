@@ -20,6 +20,8 @@
 ; What are the dimensions of the screen, i.e. what mulitples represent one line below and what is off screen?
 ; 80 characters wide, add 160 to jump to same position on next line, integer divide result by 160 to get start of next line?
 ; 25 characters tall, but don't forget zero index
+%ifndef PRINT_STRING_PM_H
+%define PRINT_STRING_PM_H
 
 [bits 32]
 VIDEO_MEMORY equ 0xb8000 ; Defining constants, VIDEO_MEMORY is the start address of video memory
@@ -48,3 +50,5 @@ print_string_pm_loop:
 print_string_pm_end:
     popa
     ret
+
+%endif

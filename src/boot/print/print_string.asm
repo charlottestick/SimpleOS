@@ -6,6 +6,8 @@
 ;
 ;string_label:
 ;	db "String to print", 0
+%ifndef PRINT_STRING_H
+%define PRINT_STRING_H
 
 print_string:
 	pusha
@@ -40,3 +42,5 @@ print_string_end:
 
 newline:
 	db `\n\r`
+
+%endif

@@ -1,3 +1,6 @@
+%ifndef GDT_H
+%define GDT_H
+
 gdt_start: ; end and start are marked so we can calculate the size
 
 gdt_null: ; Necessary null segment, contains 8 bytes of zeros
@@ -36,3 +39,5 @@ gdt_descriptor:
 	; If a segment register holds 0x0 it references the null segment, if it holds 0x10 it references the data segment
 	CODE_SEG equ gdt_code - gdt_start
 	DATA_SEG equ gdt_data - gdt_start
+
+%endif
