@@ -17,18 +17,18 @@ print_string:
 	; set ch to the scan row start and cl to the scan row end, or hide by setting ch > cl or ch += 0x20
 	; x10000 = 0x10
 	
-string_loop:
+print_string_loop:
 	mov al, [bx] ; [bx] takes the contents of bx as an address to follow, therefore [0x45ef] contents at address 0x45ef
 
 	cmp al, 0 ; String must be 0 terminated
-	je string_return
+	je print_string_end
 
 	int 0x10
 
 	add bx, 1
-	jmp string_loop
+	jmp print_string_loop
 	
-string_return:
+print_string_end:
 	; Newline and carriage return before printing next string
 	mov al, [newline]
 	int 0x10

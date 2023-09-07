@@ -31,22 +31,22 @@ print_hex:
 	mov al, cl
 	call hex_loop
 	
-	jmp hex_final
+	jmp hex_end
 	
-hex_loop:
+print_hex_loop:
 	cmp al, 0x0a
 	jge hex_letters
 	jmp hex_convert
 	
-hex_letters:
+print_hex_letters:
 	add al, 0x07
 	jmp hex_convert
 	
-hex_convert:
+print_hex_convert:
 	add al, "0"
 	int 0x10
 	ret
 	
-hex_final:
+print_hex_end:
 	popa
 	ret

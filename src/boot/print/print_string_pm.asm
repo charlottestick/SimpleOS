@@ -31,20 +31,20 @@ print_string_pm:
     mul edx ; mulitpies by and stores to eax
     mov edx, eax
     add edx, VIDEO_MEMORY ; Set edx to the position in video memory we want to write to
+    mov ah, WHITE_ON_BLACK ; store the character attribute to ah
 
 print_string_pm_loop:
     mov al, [ebx] ; store the character value in ebx to al
 
     cmp al, 0 ; exit if zero
-    je print_string_pm_done
+    je print_string_pm_end
 
-    mov ah, WHITE_ON_BLACK ; store the attribute to ah
     mov [edx], ax ; store the character and attribute to the address held by edx
 
     add ebx, 1 ; Increment to get next character in string
     add edx, 2 ; Increment to get next position in video memory
     jmp print_string_pm_loop
 
-print_string_pm_done:
+print_string_pm_end:
     popa
     ret
