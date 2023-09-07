@@ -20,6 +20,7 @@ KERNEL_OFFSET equ 0x1000
 %include "src/boot/disk/disk_load.asm"
 %include "src/boot/print/print_string.asm"
 %include "src/boot/print/print_string_pm.asm"
+%include "src/boot/print/clear_screen.asm"
 %include "src/boot/pm/gdt.asm"
 %include "src/boot/pm/switch_to_pm.asm"
 
@@ -42,23 +43,8 @@ load_kernel:
 ; Main code 32 bit
 [bits 32]
 BEGIN_PM:
-	mov ecx, 0
-
-clear_screen_loop:
-	cmp ecx, 2000
-	je clear_screen_end
-	
-	mov edx, ecx
-	mov ebx, CLRSCREEN
-	call print_string_pm
-	add ecx, 1
-	jmp clear_screen_loop
-
-clear_screen_end:
-	mov eax, 80 ; Number of characters in one line on screen
-	mov ebx, 0 ; Number of lines down to print at
-	mul ebx ; Find the number of characters along the screen to print at, wrapping round every 80
-	mov edx, eax
+	call clear_screen
+	mov edx, 0
 	mov ebx, MSG_PROT_MODE
 	call print_string_pm
 
@@ -68,7 +54,6 @@ clear_screen_end:
 
 
 ;Variables
-CLRSCREEN: db ` `, 0
 MSG_REAL_MODE: db `Started successfully in 16-bit mode`, 0
 MSG_LOAD_KERNEL: db `Loading the kernel into memory`, 0
 MSG_PROT_MODE: db "Successfully landed in 32-bit protected mode", 0
