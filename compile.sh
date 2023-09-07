@@ -12,6 +12,7 @@
 sourceFileName=$1
 addressOffset=$2
 stringLength=${#sourceFileName}
+osName=$(uname)
 
 if [ ${#addressOffset} -lt 1 ]; then
     addressOffset=0x0
@@ -21,8 +22,15 @@ if [ ${stringLength} -gt 0 ]; then # Check argument is passed
     if [ ${sourceFileName:${stringLength}-2} = '.c' ]; then # Check file extension is .c
         objectFileName="${sourceFileName:0:${stringLength}-2}.o"
         binFileName="${sourceFileName:0:${stringLength}-2}.bin"
-        gcc -target i386-none-elf -ffreestanding -c ${sourceFileName} -o ${objectFileName}
-        gobjcopy -O binary --change-section-address ".text"=${addressOffset} ${objectFileName} ${binFileName}
+        if [ ${osName} = 'Linux' ]; then
+            i386-elf-gcc -ffreestanding -c ${sourceFileName} -o ${objectFileName}
+            objcopy -O binary --change-section-address ".text"=${addressOffset} ${objectFileName} ${binFileName}
+        elif [ ${osName} = 'Darwin' ]; then
+            gcc -target i386-none-elf -ffreestanding -c ${sourceFileName} -o ${objectFileName}
+            gobjcopy -O binary --change-section-address ".text"=${addressOffset} ${objectFileName} ${binFileName}
+        else
+            echo "Unknown/unhandled host OS: ${osName}"
+        fi
     else
         echo 'Pass a C source code file to compile to raw binary'
         exit 1

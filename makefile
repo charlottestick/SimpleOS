@@ -5,10 +5,13 @@
 C_SOURCES = $(wildcard src/kernel/*.c src/drivers/*.c)
 HEADERS = $(wildcard src/kernel/*.h src/drivers/*.h)
 OBJ = ${C_SOURCES:.c=.o} # Generate list of object files by replacing file extensions in list of C files
-ifeq ($(shell uname), Linux)
+OS_NAME=$(shell uname)
+ifeq (${OS_NAME}, Linux)
 	GCC = i386-elf-gcc
-else
+else ifeq (${OS_NAME}, Darwin)
 	GCC = gcc -target i386-none-elf
+else
+	echo 'Unknown/unhandled host OS: ${OS_NAME}'
 endif
 
 all : os-image clean # Fake target, first rule is run if make is called without a target so running just 'make' will target os-image
