@@ -1,4 +1,5 @@
 bochsout.txt
+skip_debugger.txt
 bochsrc
 mem_dump
 *.o
