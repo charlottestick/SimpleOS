@@ -42,8 +42,21 @@ load_kernel:
 ; Main code 32 bit
 [bits 32]
 BEGIN_PM:
+	mov ecx, 0
+
+clear_screen_loop:
+	cmp ecx, 2000
+	je clear_screen_end
+	
+	mov edx, ecx
+	mov ebx, CLRSCREEN
+	call print_string_pm
+	add ecx, 1
+	jmp clear_screen_loop
+
+clear_screen_end:
 	mov eax, 80 ; Number of characters in one line on screen
-	mov ebx, 19 ; Number of lines down to print at
+	mov ebx, 0 ; Number of lines down to print at
 	mul ebx ; Find the number of characters along the screen to print at, wrapping round every 80
 	mov edx, eax
 	mov ebx, MSG_PROT_MODE
@@ -55,6 +68,7 @@ BEGIN_PM:
 
 
 ;Variables
+CLRSCREEN: db ` `, 0
 MSG_REAL_MODE: db `Started successfully in 16-bit mode`, 0
 MSG_LOAD_KERNEL: db `Loading the kernel into memory`, 0
 MSG_PROT_MODE: db "Successfully landed in 32-bit protected mode", 0
