@@ -33,7 +33,7 @@ print_hex:
 	mov al, cl
 	call hex_loop
 	
-	jmp hex_end
+	jmp print_hex_end
 	
 print_hex_loop:
 	cmp al, 0x0a
