@@ -5,7 +5,7 @@
 void print_at(char *message, int col, int row) {
     if (col >= 0 && row >= 0) {
         set_cursor(get_screen_offset(col, row)); // Set the cursor at the start of printing if not printing where the cursor already was
-        // It also gets updated at the end of printing to leave it in the right place
+        // It also gets updated at the end of printing to leave it just after the last pirnted character
     }
 
     int i = 0;
@@ -17,6 +17,7 @@ void print_at(char *message, int col, int row) {
 
 void print(char *message) {
     print_at(message, -1, -1); // Passing in negative positions means use the cursor position to print
+    print_char('\n', -1, -1, WHITE_ON_BLACK); // Add trailing newline
 }
 
 void clear_screen() {
