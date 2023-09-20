@@ -1,6 +1,7 @@
 [bits 32]
 [extern main] ; Declare an external symbol that the linker will substitute with the address of our main C function so that we can explicitly jump to it from here
 
+global _start
 _start: ; ld looks for this label as a start point, assumes start of .text segment if not found
     call main
     jmp $ ; Hang just in case the call to main fails or returns for whatever reason
