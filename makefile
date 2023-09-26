@@ -21,7 +21,7 @@ $(info )
 all : os-image clean # Fake target, first rule is run if make is called without a target so running just 'make' will target os-image
 
 run : os-image skip_debugger.txt # command to startup bochs, not needed if you leave bochs running and restart it from the gui
-	bochs -q -rc skip_debugger.txt
+	bochs -q -rc skip_debugger.txt || exit 0
 
 skip_debugger.txt: 
 	echo "c" | cat > skip_debugger.txt
