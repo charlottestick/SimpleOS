@@ -1,0 +1,12 @@
+megs: 32
+romimage: file=$BXSHARE/BIOS-bochs-latest
+vgaromimage: file=$BXSHARE/VGABIOS-lgpl-latest
+vga: extension=vbe, update_freq=15
+display_library: sdl2
+floppya: 1_44=os-image, status=inserted
+boot: a
+log: /dev/null
+debugger_log: /dev/null
+mouse: enabled=0
+cpu: ips=15000000
+pci: enabled=1, chipset=i440fx
