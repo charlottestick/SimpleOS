@@ -1,7 +1,6 @@
 bochsout.txt
 skip_debugger.txt
 os-image
-bochsrc
 mem_dump
 *.o
 *.bin
